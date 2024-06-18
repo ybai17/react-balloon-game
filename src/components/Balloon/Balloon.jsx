@@ -1,18 +1,21 @@
 import React, {useEffect, useState} from "react";
+//import Constants from "../utils/constants.js";
+import Constants from "../../utils/constants";
 import classnames from "//cdn.skypack.dev/classnames";
 
 //const Balloon = ({ id, color }) => {
-export const Balloon = ({ id, color }) => { //this is a named export, not a default export. Hence, it should be imported using the curly braces {}
+export const Balloon = ({ id, color, isActive, onClick }) => { //this is a named export, not a default export. Hence, it should be imported using the curly braces {}
 
   const [isPopped, setIsPopped] = useState(false);
-  const [isActive, setIsActive] = useState(false);
-  const isMoving = true;
+  //const [isActive, setIsActive] = useState(false);
+  //const isMoving = true;
 
-  const balloonWidth = 200;
+  const balloonWidth = Constants.balloonWidth;
   const balloonHeight = balloonWidth * 1.17;
-  const threadHeight = 50;
+  const threadHeight = Constants.threadHeight;
 
-  useEffect( () => {
+  /*
+    useEffect( () => {
     const activeInterval = setInterval( () => {
       setIsActive((prevIsTrue) => !prevIsTrue);
     }, 1000);
@@ -21,20 +24,21 @@ export const Balloon = ({ id, color }) => { //this is a named export, not a defa
       clearInterval(activeInterval);
     };
   }, []);
+  */
 
   const classNames = classnames("balloon", {
     "balloon--popping": isPopped,
     "balloon--active": isActive,
-    "balloon--moving": isMoving
+    //"balloon--moving": isMoving
   });
 
-  const clickHandler = () => {
+  const clickHandler = (e) => {
     if (!isPopped) {
       setIsPopped(true);
 
       setTimeout( () => {
         setIsPopped(false);
-      }, 1000);
+      }, Constants.randomnessLimits.lower);
     }
   };
 
