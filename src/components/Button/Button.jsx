@@ -1,4 +1,4 @@
-import "./Button.jsx";
+import "./Button.css";
 
 const Button = ({ width, onClick, children }) => {
     const widthMap = {

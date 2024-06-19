@@ -6,9 +6,7 @@ import Constants from "./utils/constants";
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Balloon color={`${Constants.balloonColor}`} id={"1"} />
-  </React.StrictMode>,
+    <App />
 )
 
 //<Balloon color={"#9980FA"} id={"1"} />

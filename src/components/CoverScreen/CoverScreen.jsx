@@ -1,4 +1,5 @@
 import Button from "../Button/Button";
+import "./CoverScreen.css";
 
 const CoverScreen = ({ score, onStartGame, duration }) => //{ //parantheses or curly braces?
 

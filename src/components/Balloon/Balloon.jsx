@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 //import Constants from "../utils/constants.js";
 import Constants from "../../utils/constants";
 import classnames from "//cdn.skypack.dev/classnames";
+import "./Balloon.css";
 
 //const Balloon = ({ id, color }) => {
 export const Balloon = ({ id, color, isActive, onClick }) => { //this is a named export, not a default export. Hence, it should be imported using the curly braces {}
