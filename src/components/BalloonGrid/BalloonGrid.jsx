@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Constants from "../../utils/constants";
 import { Balloon } from "../Balloon/Balloon";
 import { useState } from  "react";
+import "./BallonGrid.css";
 
 const BalloonGrid = ({ numberOfBalloons, onBalloonClick }) => {
 
