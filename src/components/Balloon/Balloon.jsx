@@ -36,12 +36,15 @@ export const Balloon = ({ id, color, isActive, onClick }) => { //this is a named
   const clickHandler = (e) => {
     if (!isPopped) {
       setIsPopped(true);
+      onClick();
 
       setTimeout( () => {
         setIsPopped(false);
       }, Constants.randomnessLimits.lower);
     }
   };
+
+  
 
   return (
     <div className="balloon-cell">

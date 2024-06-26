@@ -4,6 +4,71 @@ import { Balloon } from "../Balloon/Balloon";
 import "./BalloonGrid.css";
 
 const BalloonGrid = ({ numberOfBalloons, onBalloonClick }) => {
+    const [activeBalloons, setActiveBalloons] = useState([]);
+  
+    const handleBalloonClick = (id) => {
+      if (onBalloonClick) {
+        onBalloonClick(id);
+      }
+    };
+  
+    useEffect(() => {
+      const intervalIds = [];
+  
+      const generateRandomBalloon = () => {
+        const randomBalloonId = Math.floor(Math.random() * numberOfBalloons);
+  
+        setActiveBalloons((prevActiveBalloons) => {
+          if (prevActiveBalloons.includes(randomBalloonId)) {
+            return prevActiveBalloons.filter(
+              (activeId) => activeId !== randomBalloonId
+            );
+          } else {
+            return [...prevActiveBalloons, randomBalloonId];
+          }
+        });
+      };
+  
+      for (let i = 0; i < numberOfBalloons; i++) {
+        const intervalId = setInterval(
+          generateRandomBalloon,
+          getRandomNumber(
+            Constants.randomnessLimits.lower,
+            Constants.randomnessLimits.upper
+          )
+        );
+        intervalIds.push(intervalId);
+      }
+  
+      return () => {
+        intervalIds.forEach((intervalId) => clearInterval(intervalId));
+      };
+    }, []);
+  
+    const balloons = [];
+  
+    for (let i = 0; i < numberOfBalloons; i++) {
+      balloons.push(
+        <Balloon
+          key={i}
+          id={i}
+          color={Constants.balloonColor}
+          isActive={activeBalloons.includes(i)}
+          onClick={() => handleBalloonClick(i)}
+        />
+      );
+    }
+  
+    return (
+      <div className="balloon-grid-wrapper">
+        <p className="balloon-grid-caption">Click a balloon to score</p>
+        <div className="balloon-grid">{balloons}</div>
+      </div>
+    );
+  };
+
+/*
+const BalloonGrid = ({ numberOfBalloons, onBalloonClick }) => {
 
     const [activeBalloons, setActiveBalloons] = useState([]);
     //const intervalIdsRef = useRef([]);
@@ -91,6 +156,7 @@ const BalloonGrid = ({ numberOfBalloons, onBalloonClick }) => {
 const getRandomNumber = function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+    */
 
 export default BalloonGrid;
 

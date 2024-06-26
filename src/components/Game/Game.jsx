@@ -53,11 +53,11 @@ const Game = ({ numberOfBalloons, gameDuration }) => {
                 setTimeRemaining((prevTimeRemaining) => {
                     if (prevTimeRemaining > 0) {
                         return prevTimeRemaining - 1;
+                    } else {
+                        clearInterval(timerRef.current);
+                        setGameStarted(false);
+                        return 0;
                     }
-
-                    clearInterval(timerRef.current);
-                    setGameStarted(false);
-                    return 0;
                 });
             }, 1000);
         }
